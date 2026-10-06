@@ -32,6 +32,20 @@ class DemoApiApplicationTests {
     }
 
     @Test
+    void rootEndpointReturnsInstanceInformation() throws Exception {
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(basicApiController).build();
+
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.service").value("demo-api"))
+                .andExpect(jsonPath("$.instanceId").isNotEmpty())
+                .andExpect(jsonPath("$.hostName").isNotEmpty())
+                .andExpect(jsonPath("$.ipAddresses").isArray())
+                .andExpect(jsonPath("$.operatingSystem").isNotEmpty())
+                .andExpect(jsonPath("$.javaVersion").isNotEmpty());
+    }
+
+    @Test
     void healthEndpointReturnsUpStatus() throws Exception {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(basicApiController).build();
 

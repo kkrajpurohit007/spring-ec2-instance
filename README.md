@@ -10,6 +10,7 @@ A small Spring Boot service for trying out EC2 targets and an AWS load balancer.
 
 The app listens on port `8080` by default:
 
+- `GET http://localhost:8080/` returns instance diagnostics, including hostname, network interface IP addresses, OS, Java version, and processor count.
 - `GET http://localhost:8080/api/hello` returns the service name, instance ID, and a greeting.
 - `GET http://localhost:8080/api/health` returns an `UP` status for the load balancer health check.
 
